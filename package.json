@@ -1,0 +1,47 @@
+{
+  "name": "leg-language",
+  "displayName": "Leg Language",
+  "description": "Language support for the Leg programming language",
+  "version": "1.0.0",
+  "publisher": "aoyako",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "leg",
+        "extensions": [
+          ".leg"
+        ],
+        "configuration": "./leg-configuration.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.format-leg",
+        "title": "Format leg file"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "leg",
+        "scopeName": "source.leg",
+        "path": "./syntaxes/leg.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "tsc"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "2.0.6",
+    "vscode-test": "^1.6.1"
+  }
+}

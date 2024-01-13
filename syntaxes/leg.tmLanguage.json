@@ -1,0 +1,117 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Leg",
+	"scopeName": "source.leg",
+	"fileTypes": [
+		"leg"
+	],
+	"patterns": [
+		{
+			"begin": "%{",
+			"end": "(?=%})",
+			"name": "source.embedded.leg.init",
+			"patterns": [
+				{
+					"match": ".+",
+					"include": "source.c"
+				}
+			]
+		},
+		{
+			"begin": "%}",
+			"end": "%%;",
+			"patterns": [
+				{
+					"match": ".+",
+					"include": "#leg-embedded-syntax"
+				}
+			]
+		},
+		{
+			"include": "source.c"
+		}
+	],
+	"repository": {
+		"leg-embedded-syntax": {
+			"patterns": [
+				{
+					"include": "#leg-embedded-syntax-string"
+				},
+				{
+					"include": "#leg-embedded-syntax-var"
+				},
+				{
+					"include": "#leg-embedded-syntax-id"
+				},
+				{
+					"include": "#leg-embedded-syntax-group"
+				},
+				{
+					"include": "#leg-embedded-syntax-special"
+				},
+				{
+					"begin": "{",
+					"end": "}",
+					"patterns": [
+						{
+							"match": ".+",
+							"include": "source.c"
+						}
+					]
+				}
+			]
+		},
+		"leg-embedded-syntax-string": {
+			"patterns": [
+				{
+					"match": "\"(\\.|[^\"])*\"",
+					"name": "string.quoted.double.leg"
+				},
+				{
+					"match": "'..?'",
+					"name": "string.quoted.single"
+				}
+			]
+		},
+		"leg-embedded-syntax-id": {
+			"patterns": [
+				{
+					"match": "[a-zA-Z_0-9\\-]+",
+					"name": "constant.other"
+				}
+			]
+		},
+		"leg-embedded-syntax-group": {
+			"patterns": [
+				{
+					"match": "\\[.+\\]",
+					"name": "entity.name.tag"
+				}
+			]
+		},
+		"leg-embedded-syntax-special": {
+			"patterns": [
+				{
+					"match": "[|*&^!?=+-]",
+					"name": "keyword.operator"
+				}
+			]
+		},
+		"leg-embedded-syntax-var": {
+			"patterns": [
+				{
+					"match": "[a-zA-Z0-9_]+:",
+					"name": "variable.parameter.leg"
+				}
+			]
+		},
+		"leg-embedded-syntax-text": {
+			"patterns": [
+				{
+					"match": ".+",
+					"name": "keyword.other.leg"
+				}
+			]
+		}
+	}
+}

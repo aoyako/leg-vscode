@@ -92,7 +92,7 @@
 		"leg-embedded-syntax-special": {
 			"patterns": [
 				{
-					"match": "[|*&^!?=+-]",
+					"match": "[|*&^!?=+-><]",
 					"name": "keyword.operator"
 				}
 			]
